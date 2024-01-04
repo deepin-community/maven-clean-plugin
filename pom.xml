@@ -25,12 +25,12 @@ under the License.
   <parent>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-plugins</artifactId>
-    <version>31</version>
-    <relativePath>../../pom/maven/maven-plugins/pom.xml</relativePath>
+    <version>35</version>
+    <relativePath />
   </parent>
 
   <artifactId>maven-clean-plugin</artifactId>
-  <version>3.1.0</version>
+  <version>3.2.0</version>
   <packaging>maven-plugin</packaging>
 
   <name>Apache Maven Clean Plugin</name>
@@ -47,7 +47,7 @@ under the License.
     <connection>scm:git:https://gitbox.apache.org/repos/asf/maven-clean-plugin.git</connection>
     <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/maven-clean-plugin.git</developerConnection>
     <url>https://github.com/apache/maven-clean-plugin/tree/${project.scm.tag}</url>
-    <tag>maven-clean-plugin-3.1.0</tag>
+    <tag>maven-clean-plugin-3.2.0</tag>
   </scm>
   <issueManagement>
     <system>JIRA</system>
@@ -55,19 +55,21 @@ under the License.
   </issueManagement>
   <ciManagement>
     <system>Jenkins</system>
-    <url>https://builds.apache.org/job/maven-box/job/maven-clean-plugin/</url>
+    <url>https://ci-builds.apache.org/job/Maven/job/maven-box/job/maven-clean-plugin/</url>
   </ciManagement>
   <distributionManagement>
     <site>
       <id>apache.website</id>
-      <url>scm:svn:https://svn.apache.org/repos/infra/websites/production/maven/components/${maven.site.path}</url>
+      <url>scm:svn:https://svn.apache.org/repos/asf/maven/website/components/${maven.site.path}</url>
     </site>
   </distributionManagement>
 
   <properties>
-    <mavenVersion>3.0</mavenVersion>
-    <surefire.version>2.21.0</surefire.version>
-    <javaVersion>7</javaVersion>
+    <mavenVersion>3.2.5</mavenVersion>
+    <javaVersion>8</javaVersion>
+    <surefire.version>2.22.2</surefire.version>
+    <mavenPluginToolsVersion>3.6.4</mavenPluginToolsVersion>
+    <project.build.outputTimestamp>2022-04-01T21:20:29Z</project.build.outputTimestamp>
   </properties>
 
   <dependencies>
@@ -75,11 +77,12 @@ under the License.
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
       <version>${mavenVersion}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.shared</groupId>
       <artifactId>maven-shared-utils</artifactId>
-      <version>3.2.1</version>
+      <version>3.3.4</version>
     </dependency>
 
     <!-- dependencies to annotations -->
@@ -93,7 +96,7 @@ under the License.
     <dependency>
       <groupId>org.apache.maven.plugin-testing</groupId>
       <artifactId>maven-plugin-testing-harness</artifactId>
-      <version>2.1</version>
+      <version>3.3.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -106,12 +109,12 @@ under the License.
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-core</artifactId>
       <version>${mavenVersion}</version>
-      <scope>test</scope>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
