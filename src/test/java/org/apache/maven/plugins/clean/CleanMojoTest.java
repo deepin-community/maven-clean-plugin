@@ -19,39 +19,24 @@ package org.apache.maven.plugins.clean;
  * under the License.
  */
 
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.testing.AbstractMojoTestCase;
+
 import java.io.File;
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.testing.AbstractMojoTestCase;
-import org.apache.maven.plugins.clean.CleanMojo;
-import org.codehaus.plexus.util.FileUtils;
+import static org.apache.commons.io.FileUtils.copyDirectory;
 
 /**
  * Test the clean mojo.
  *
  * @author <a href="mailto:vincent.siveton@gmail.com">Vincent Siveton</a>
- * @version $Id$
  */
 public class CleanMojoTest
     extends AbstractMojoTestCase
 {
-    /** {@inheritDoc} */
-    protected void setUp()
-        throws Exception
-    {
-        super.setUp();
-    }
-
-    /** {@inheritDoc} */
-    protected void tearDown()
-        throws Exception
-    {
-        super.tearDown();
-    }
-
     /**
      * Tests the simple removal of directories
      *
@@ -63,8 +48,8 @@ public class CleanMojoTest
         String pluginPom = getBasedir() + "/src/test/resources/unit/basic-clean-test/plugin-pom.xml";
 
         // safety
-        FileUtils.copyDirectory( new File( getBasedir(), "src/test/resources/unit/basic-clean-test" ),
-                                 new File( getBasedir(), "target/test-classes/unit/basic-clean-test" ), null, "**/.svn,**/.svn/**" );
+        copyDirectory( new File( getBasedir(), "src/test/resources/unit/basic-clean-test" ),
+                                 new File( getBasedir(), "target/test-classes/unit/basic-clean-test" ) );
 
         CleanMojo mojo = (CleanMojo) lookupMojo( "clean", pluginPom );
         assertNotNull( mojo );
@@ -90,8 +75,8 @@ public class CleanMojoTest
         String pluginPom = getBasedir() + "/src/test/resources/unit/nested-clean-test/plugin-pom.xml";
 
         // safety
-        FileUtils.copyDirectory( new File( getBasedir(), "src/test/resources/unit/nested-clean-test" ),
-                                 new File( getBasedir(), "target/test-classes/unit/nested-clean-test" ), null, "**/.svn,**/.svn/**" );
+        copyDirectory( new File( getBasedir(), "src/test/resources/unit/nested-clean-test" ),
+                                 new File( getBasedir(), "target/test-classes/unit/nested-clean-test" ) );
 
         CleanMojo mojo = (CleanMojo) lookupMojo( "clean", pluginPom );
         assertNotNull( mojo );
@@ -115,8 +100,8 @@ public class CleanMojoTest
         String pluginPom = getBasedir() + "/src/test/resources/unit/empty-clean-test/plugin-pom.xml";
 
         // safety
-        FileUtils.copyDirectory( new File( getBasedir(), "src/test/resources/unit/empty-clean-test" ),
-                                 new File( getBasedir(), "target/test-classes/unit/empty-clean-test" ), null, "**/.svn,**/.svn/**" );
+        copyDirectory( new File( getBasedir(), "src/test/resources/unit/empty-clean-test" ),
+                                 new File( getBasedir(), "target/test-classes/unit/empty-clean-test" ) );
 
         CleanMojo mojo = (CleanMojo) lookupEmptyMojo( "clean", pluginPom );
         assertNotNull( mojo );
@@ -143,8 +128,8 @@ public class CleanMojoTest
         String pluginPom = getBasedir() + "/src/test/resources/unit/fileset-clean-test/plugin-pom.xml";
 
         // safety
-        FileUtils.copyDirectory( new File( getBasedir(), "src/test/resources/unit/fileset-clean-test" ),
-                                 new File( getBasedir(), "target/test-classes/unit/fileset-clean-test" ), null, "**/.svn,**/.svn/**" );
+        copyDirectory( new File( getBasedir(), "src/test/resources/unit/fileset-clean-test" ),
+                                 new File( getBasedir(), "target/test-classes/unit/fileset-clean-test" ) );
 
         CleanMojo mojo = (CleanMojo) lookupMojo( "clean", pluginPom );
         assertNotNull( mojo );
@@ -179,8 +164,8 @@ public class CleanMojoTest
         String pluginPom = getBasedir() + "/src/test/resources/unit/invalid-directory-test/plugin-pom.xml";
 
         // safety
-        FileUtils.copyDirectory( new File( getBasedir(), "src/test/resources/unit/invalid-directory-test" ),
-                                 new File( getBasedir(), "target/test-classes/unit/invalid-directory-test" ), null, "**/.svn,**/.svn/**" );
+        copyDirectory( new File( getBasedir(), "src/test/resources/unit/invalid-directory-test" ),
+                                 new File( getBasedir(), "target/test-classes/unit/invalid-directory-test" ) );
 
         CleanMojo mojo = (CleanMojo) lookupMojo( "clean", pluginPom );
         assertNotNull( mojo );
@@ -208,8 +193,8 @@ public class CleanMojoTest
         String pluginPom = getBasedir() + "/src/test/resources/unit/missing-directory-test/plugin-pom.xml";
 
         // safety
-        FileUtils.copyDirectory( new File( getBasedir(), "src/test/resources/unit/missing-directory-test" ),
-                                 new File( getBasedir(), "target/test-classes/unit/missing-directory-test" ), null, "**/.svn,**/.svn/**" );
+        copyDirectory( new File( getBasedir(), "src/test/resources/unit/missing-directory-test" ),
+                                 new File( getBasedir(), "target/test-classes/unit/missing-directory-test" ) );
 
         CleanMojo mojo = (CleanMojo) lookupMojo( "clean", pluginPom );
         assertNotNull( mojo );
@@ -239,39 +224,22 @@ public class CleanMojoTest
         String pluginPom = getBasedir() + "/src/test/resources/unit/locked-file-test/plugin-pom.xml";
 
         // safety
-        FileUtils.copyDirectory( new File( getBasedir(), "src/test/resources/unit/locked-file-test" ),
-                                 new File( getBasedir(), "target/test-classes/unit/locked-file-test" ), null, "**/.svn,**/.svn/**" );
+        copyDirectory( new File( getBasedir(), "src/test/resources/unit/locked-file-test" ),
+                                 new File( getBasedir(), "target/test-classes/unit/locked-file-test" ) );
 
         CleanMojo mojo = (CleanMojo) lookupMojo( "clean", pluginPom );
         assertNotNull( mojo );
 
         File f = new File( getBasedir(), "target/test-classes/unit/locked-file-test/buildDirectory/file.txt" );
-        FileChannel channel = null;
-        FileLock lock = null;
-        try
+        try ( FileChannel channel = new RandomAccessFile( f, "rw" ).getChannel();
+              FileLock ignored = channel.lock() )
         {
-            channel = new RandomAccessFile( f, "rw" ).getChannel();
-            lock = channel.lock();
-
             mojo.execute();
-
             fail( "Should fail to delete a file that is locked" );
         }
         catch ( MojoExecutionException expected )
         {
             assertTrue( true );
-        }
-        finally
-        {
-            if ( lock != null )
-            {
-                lock.release();
-            }
-
-            if ( channel != null )
-            {
-                channel.close();
-            }
         }
     }
 
@@ -295,40 +263,23 @@ public class CleanMojoTest
         String pluginPom = getBasedir() + "/src/test/resources/unit/locked-file-test/plugin-pom.xml";
 
         // safety
-        FileUtils.copyDirectory( new File( getBasedir(), "src/test/resources/unit/locked-file-test" ),
-                                 new File( getBasedir(), "target/test-classes/unit/locked-file-test" ), null, "**/.svn,**/.svn/**" );
+        copyDirectory( new File( getBasedir(), "src/test/resources/unit/locked-file-test" ),
+                                 new File( getBasedir(), "target/test-classes/unit/locked-file-test" ) );
 
         CleanMojo mojo = (CleanMojo) lookupMojo( "clean", pluginPom );
         setVariableValueToObject( mojo, "failOnError", Boolean.FALSE );
         assertNotNull( mojo );
 
         File f = new File( getBasedir(), "target/test-classes/unit/locked-file-test/buildDirectory/file.txt" );
-        FileChannel channel = null;
-        FileLock lock = null;
-        try
+        try ( FileChannel channel = new RandomAccessFile( f, "rw" ).getChannel();
+              FileLock ignored = channel.lock())
         {
-            channel = new RandomAccessFile( f, "rw" ).getChannel();
-            lock = channel.lock();
-
             mojo.execute();
-
             assertTrue( true );
         }
         catch ( MojoExecutionException expected )
         {
             fail( "Should display a warning when deleting a file that is locked" );
-        }
-        finally
-        {
-            if ( lock != null )
-            {
-                lock.release();
-            }
-
-            if ( channel != null )
-            {
-                channel.close();
-            }
         }
     }
 
@@ -338,7 +289,7 @@ public class CleanMojoTest
      */
     private boolean checkExists( String dir )
     {
-        return FileUtils.fileExists( new File( dir ).getAbsolutePath() );
+        return new File( new File( dir ).getAbsolutePath() ).exists();
     }
 
     /**
@@ -347,6 +298,7 @@ public class CleanMojoTest
      */
     private boolean checkEmpty( String dir )
     {
-        return new File( dir ).listFiles().length == 0;
+        File[] files = new File( dir ).listFiles();
+        return files == null || files.length == 0;
     }
 }
